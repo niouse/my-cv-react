@@ -1,0 +1,194 @@
+{
+   "title": "développeur JAVASCRIPT",
+   "personalInfos": {
+      "firstName": "Gérard",
+      "lastName": "Petit",
+      "birthDate": "31/08/1985",
+      "email": "gerard.bienportant@gmail.com",
+      "adress": {
+         "city": "Lyon",
+         "zipCode": "69006",
+         "street": "rue de la réppublique",
+         "streetNumber": 36
+      },
+      "phone": "0654789865",
+      "presentation": "Jeune développeur web, j'utilise mes expériences acquises lors de mes précédentes expériences professionnelles pour concevoir des applications métiers multiplaterformes en javascript. Mes principaux outils de travail sont React, graphql et les architectures serverless.",
+      "isAvailable": true,
+      "linkedin" : "#",
+      "twitter" : "#",
+      "facebook" : "#"
+   },
+   "experiences": [
+     {
+         "startDate": "2013",
+         "endDate": "Actual",
+         "duration" : "",
+         "type" : "freelance",
+         "title": "Développeur web",
+         "description": "Développement d'applications web métiers",
+         "location": "Lyon",
+         "missions": [
+           "Aise à la rédaction de cahier des charges.",
+           "Développement d'application web ou mobile (Android et iOs)"
+         ],
+         "skillsLearned": ["autonomie", "javascript", "html"]
+      },
+     {
+         "startDate": "2011",
+         "endDate": "2013",
+         "duration" : "24 mois",
+         "type" : "CDI",
+         "title": "Chargé d'affaire études thermiques",
+         "description": "Cconception thermique d'organes ou systèmes thermiques, en lien avec le refroidissement moteur ou chauffage habitacle.",
+         "society" : {
+            "name" : "AREVA",
+            "logo" : "logos/areva-logo.jpg",
+            "description" : "Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,nisi elit consequat ipsum,nec sagittis sem nibh id elit.Duis.",
+            "link" : ""
+         },
+         "location": "Lyon",
+         "missions": [
+           "Analyser le Cahier des charges.",
+            "Rechercher les concepts et dimensionner les systèmes thermiques.",
+           "Rechercher les solutions de simulations thermiques.",
+           "Animer les échanges avec les services connexes (Design, Essais & Validation, architecture, atelier prototypes), les fournisseurs et les clients.",
+            "Analyser la concurrence."
+         ],
+         "skillsLearned": ["gestion de projet", "travail en équipe", "C++"]
+      },
+      {
+         "startDate": "2009",
+         "endDate": "2010",
+         "duration" : "6 mois",
+         "type" : "Stage",
+         "title": "Stage ingégnieur thermicien",
+         "description": "Etudes de faisabilité d'installation de systèmes de panneaux solaires thermiques ",
+         "society" : {
+            "name" : "AREVA",
+            "logo" : "logos/areva-logo.jpg",
+            "description" : "Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,nisi elit consequat ipsum,nec sagittis sem nibh id elit.Duis.",
+            "link" : ""
+         },
+         "location": "Lyon",
+         "missions": [
+            "Développer des modèles thermiques  ",
+            "Calcul des gains énergétiques et retours sur investissemnt ",
+            "Etablissement de dossiers pour l'obtention de crédit d'impots"
+         ],
+         "skillsLearned": ["gestion de projet", "travail en équipe", "rigueur", "office"]
+      }
+   ],
+   "formations": [
+      {
+         "startDate": "2007",
+         "endDate": "2010",
+         "title": "Diplome d'ingégnieur en thermique du batiment",
+         "schoolName" : "ENSIG",
+         "location" : "NANTES"
+      },
+     {
+         "startDate": "2005",
+         "endDate": "2007",
+         "title": "IUT mesures physiques",
+         "schoolName" : "Lycée Charlemagne",
+         "location" : "Rouen"
+      },
+      {
+         "startDate": "2004",
+         "endDate": "2005",
+         "title": "Bachalauréat scientifique option SVT",
+         "schoolName" : "Lycée Charlemagne",
+         "location" : "Rouen"
+      },
+     {
+         "startDate": "2004",
+         "endDate": "2005",
+         "title": "Bachalauréat scientifique option SVT",
+         "schoolName" : "Lycée Charlemagne",
+         "location" : "Rouen"
+      }
+   ],
+   "skills": [
+      {
+         "type": "language",
+         "name": "english",
+         "rate": 4
+      },
+      {
+         "type": "language",
+         "name": "french",
+         "rate": 5
+      },
+      {
+         "type": "language",
+         "name": "german",
+         "rate": 2
+      },
+      {
+         "type": "programation",
+         "name": "C++",
+         "rate": 1
+      },
+      {
+         "type": "programation",
+         "name": "javascript",
+         "rate": 5
+      },
+      {
+         "type": "programation",
+         "name": "html",
+         "rate": 4
+      },
+      {
+         "type": "software",
+         "name": "office",
+         "rate": 4
+      },
+      {
+         "type": "software",
+         "name": "Comsol",
+         "rate": 4
+      },
+      {
+         "type": "software",
+         "name": "Ansys CFX",
+         "rate": 5
+      },
+     {
+         "type": "CAO/DAO",
+         "name": "Solidworks",
+         "rate": 3
+      },
+     {
+         "type": "CAO/DAO",
+         "name": "Autocad",
+         "rate": 5
+      },
+      {
+         "type": "CAO/DAO",
+         "name": "Blender",
+         "rate": 5
+      },
+     
+     {
+         "type": "frameworks",
+         "name": "React",
+         "rate": 5
+      },
+     {
+         "type": "frameworks",
+         "name": "Angular",
+         "rate": 2
+      },
+     {
+         "type": "frameworks",
+         "name": "Vuejs",
+         "rate": 1
+      },
+     {
+         "type": "frameworks",
+         "name": "Vanilla",
+         "rate": 5
+      }
+   ]
+}
