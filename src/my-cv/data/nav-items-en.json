@@ -1,18 +1,22 @@
 [
-   {
-      "text": "EXPERIENCES",
-      "link": "experiences"
-   },
-   {
-      "text": "SKILLS",
-      "link": "skills"
-   },
-    {
-      "text": "FORMATIONS",
-      "link": "formations"
-   },
-   {
-      "text": "CONTACT",
-      "link": "contact"
-   }
+  {
+    "text": "ABOUT",
+    "link": "banner"
+  },
+  {
+    "text": "EXPERIENCES",
+    "link": "experiences"
+  },
+  {
+    "text": "SKILLS",
+    "link": "skills"
+  },
+  {
+    "text": "FORMATIONS",
+    "link": "formations"
+  },
+  {
+    "text": "CONTACT",
+    "link": "contact"
+  }
 ]

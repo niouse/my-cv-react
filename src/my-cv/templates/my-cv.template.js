@@ -1,4 +1,7 @@
-import React from 'react';
+import React ,{Fragment} from 'react';
+import PropTypes from 'prop-types'
+
+import styled from 'styled-components';
 
 import Navigation from './navigation.template'
 import Banner from './banner.template'
@@ -7,74 +10,77 @@ import Contact from "./contact.template"
 import Skills from "./skills.template"
 import Formations from "./formations.template.js"
 
-const Template = ({
-  styles, 
-  texts,
-  cv, 
-  navItems, 
-  toggleBool, 
-  openDetails, 
-  isDetailOpen,
-  expDetails,
-  setLanguage,
-  scrollTo,
-  form,
-  handleFromChange,
-  submitForm }) => {
+import banner from "./../images/banner.jpg"
+import contact from "./../images/footerbg.jpg"
+
+
+const Header = styled.header`
+  display : flex;
+  flex-direction : column;
+  background : url(${banner});
+  min-height : 700px;
+  width : 100%;
+  background-size : cover;
+`
+
+const Section= styled.section`
+  width : 100%;
+  background-color : ${({primary})=>primary ? '#281D24' : 'white'};
+`
+
+const Footer = styled.footer`
+  background : url(${contact});
+  min-height : 567px;
+  width : 100%;
+  background-size : 100%;  
+`
+
+const Template = (props) => {
+  const {texts, cv} = props
   return (
-    <div className="App">
-      <header style={styles.header}>
-        <Navigation 
-          navItems={navItems}
-          styles={styles.navigation}
-          setLanguage={setLanguage}
-          scrollTo={scrollTo}
-          />
-        <Banner 
-          styles={styles.banner}
-          scrollTo={scrollTo}
+    <Fragment>
+      <Header>
+        <Navigation {...props} />
+        <Banner
+          {...props}
           infos={cv.personalInfos}
           title={cv.title}
           texts={texts.banner}
-          />
-      </header>
-      <section  style={styles.section1}>
-        <Experiences 
-         styles={styles.experiences}
-         experiences={cv.experiences}
-         toggleBool={toggleBool}
-         openDetails={openDetails}
-         isDetailOpen={isDetailOpen}
-         expDetails={expDetails}
-         texts={texts.experiences}
-         />
-      </section>
-      <section style={styles.section2}>
-        <Skills 
-          styles={styles.skills}
+        />
+      </Header>
+      <Section primary>
+        <Experiences
+          {...props}
+          experiences={cv.experiences}
+          texts={texts.experiences}
+        />
+      </Section>
+      <Section>
+        <Skills
           skills={cv.skills}
           texts={texts.styles}
-          />
-      </section>
-      <section style={styles.section3}>
-        <Formations 
-          styles={styles.formations}
+        />
+      </Section>
+      <Section primary>
+        <Formations
+          {...props}
           formations={cv.formations}
           texts={texts.formations}
-          />
-      </section>
-      <footer style={styles.footer}>
-         <Contact 
-            styles={styles.contact}
-            form={form}
-            handleFromChange={handleFromChange}
-            submitForm={submitForm}
-            texts={texts.contact}
-            />
-      </footer>
-     
-    </div>
+        />
+      </Section>
+      <Footer>
+        <Contact
+          {...props}
+          texts={texts.contact}
+        />
+      </Footer>
+    </Fragment>
   );
+}
+
+Template.propTypes = {
+  cv : PropTypes.object.isRequired,
+  texts :PropTypes.object.isRequired
 }
 
 export default Template;

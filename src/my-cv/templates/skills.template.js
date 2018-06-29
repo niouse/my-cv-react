@@ -1,55 +1,81 @@
 import React from 'react'
-import SkillRate from "./skill-rate.template.js"
+import PropTypes from 'prop-types'
+
+import { Flex, Box } from 'grid-styled'
+import styled from 'styled-components';
 
 import Container from './../components/container.component.js'
 import LineTitle from "./../components/line-title.component.js"
 import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
+import SkillRate from "./skill-rate.template.js"
+import formatSkills from './../api/format-skills'
 
-var Skills = ({styles, skills}) => {
-  
-  var formatedSkills = []
-  
-  skills.forEach((item, index)=>{
-    if(formatedSkills.indexOf(item.type)===-1) formatedSkills.push(item.type)
-  })
-  
-  formatedSkills=formatedSkills.map((item, index)=>{
-    var content = []
-    skills
-      .filter((item2)=>item===item2.type)
-      .forEach((item2, index2)=>{content.push(item2)})
-    return ({
-      type : item,
-      skills : content
-    })
-  })
-    
- const SkillsContainer = ({title, skills}) => ( 
-    <div style={styles.skillsBox}>
-        <div style={styles.skillType}>{title.toUpperCase()}</div>
-        <div style={styles.skillsList}>
-            {
-              skills
-                .map((item, index)=><SkillRate  key={title+index} name={item.name} rate={item.rate} />)
-            }
-        </div>
-     </div>
-  )
-  
-  return ( 
-  <Container id="skills">
+const AroundBox = styled(Flex)`
+  max-width:900px;
+    flex-wrap : wrap;
+    justify-content : space-around;
+`
+
+const SkillBox = styled.div`
+  display : inline-block;
+  flex-basis : 0;
+  flex-shrink : 0;
+  flex-grow : 0;
+  margin-bottom : 50px;
+`
+
+const SkillType = styled.div`
+  font-size : 1em;
+  color : white;
+  font-weight : 900;
+  align-items : center;
+  display : flex;
+  padding : 10px;
+  background-color : #C6C3C5;
+  justify-content : center;
+`
+
+const SkillsContainer = ({ title, skills }) => (
+  <SkillBox>
+    <SkillType>{title.toUpperCase()}</SkillType>
+    <Box pr="15px" pl="15px">
+      {skills.map((item, index) => <SkillRate 
+        key={title + index} 
+        name={item.name}
+        rate={item.rate} />)}
+    </Box>
+  </SkillBox>
+)
+
+const Skills = ({ skills }) => {
+  const formatedSkills = formatSkills(skills)
+  return (
+    <Container id="skills">
       <LineTitle title="SKILLS" />
-      <div style={styles.content}>
+      <AroundBox>
         {
-          formatedSkills.map((item, index)=>{
-            return <SkillsContainer key={"skill"+index} title={item.type} skills={item.skills}/>
+          formatedSkills.map((item, index) => {
+            return <SkillsContainer key={"skill" + index} title={item.type} skills={item.skills} />
           })
         }
-      </div>
+      </AroundBox>
       <ScrollTop />
     </Container>
   )
+}
+
+SkillsContainer.propTypes = {
+  skills : PropTypes.array.isRequired,
+  title : PropTypes.string.isRequired
+}
+
+Skills.propTypes = {
+  skills : PropTypes.arrayOf(PropTypes.shape({
+    name : PropTypes.string.isRequired,
+    type : PropTypes.string.isRequired,
+    rate : PropTypes.number.isRequired,
+  })).isRequired
 }
 
 export default Skills

@@ -1,29 +1,48 @@
 import React from 'react'
-import styles from "./../styles/skill-rate.styles.js"
+import PropTypes from 'prop-types'
+
+import { Flex } from 'grid-styled'
+import styled from 'styled-components';
+
+const Container = styled(Flex)`
+  align-items : center;
+  justify-content : space-between;
+  height :70px;
+  width : 320px;
+`
+
+const Name = styled.span`
+  font-size : 1.5em;
+  color : #281D24;
+`
+
+const Circle = styled.div`
+  width : 32px;
+  height : 32px;
+  border-radius : 16px;
+  margin-left : 10px;
+  background-color : ${({primary}) => primary ? '#C6C3C5' : '#281D24'};
+`
 
 const SkillRate = ({name, rate})=>{
-  
-  
-  const Circle = ({primary}) =>( 
-    <div style={primary ? styles.circle1 : styles.circle2}></div>
-  )
-  
   var rateArray = new Array(5).fill(false)
-  
-  
   return (
-    <div style={styles.container}>
-      <span style={styles.name}>{name}</span> 
-      <div style={styles.circlesBox}>
+    <Container>
+      <Name>{name}</Name> 
+      <Flex>
         {
            rateArray
              .map((item, index)=>index+1>rate)
-             .map((item, index)=><Circle key={"circle"+index} primary={item} />)
+             .map((isPrim, index)=><Circle key={"circle"+index} primary={isPrim} />)
         }
-      </div>
-      
-    </div>
+      </Flex>
+    </Container>
   )
+}
+
+SkillRate.propTypes = {
+  name : PropTypes.string.isRequired,
+  rate : PropTypes.number.isRequired,
 }
 
 export default SkillRate
