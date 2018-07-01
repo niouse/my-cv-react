@@ -1,40 +1,48 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components';
+import { getTheme } from '../api/theme-utils';
 
-const styles = {
-  container : {
-    padding : "70px 0px 70px 0px",
-    display : "flex",
-    width : "100%",
-    maxWidth : "700px",
-    alignItems : "center",
-  },
-  line : {
-    borderTop : "1px solid #C6C3C5",
-    flex : 1,
-    height : "0px",
-  },
-  headTitle : {
-    fontWeight : 100,
-    color : '#C6C3C5',
-    fontFamily : 'Lato, sans-serif',
-    lineHeight : "33px",
-    boxSizing : "border-box",
-    fontSize : "30px",
-    margin : "0px 10px 0px 10px"
-  },
+
+const Container = styled.div`
+  padding : 70px 0px 70px 0px;
+  display : flex;
+  align-items : center;
+  width : 100%;
+  max-width : 700px;
+`
+
+const Line = styled.div`
+  border-top : 1px solid;
+  border-top-color : ${getTheme('text3')};
+  flex : 1;
+  height : 0px;
+`
+
+const Title = styled.div`
+  font-weight : 100;
+  color :  ${getTheme('text3')};
+  font-family : Lato, sans-serif;
+  line-height : 33px;
+  box-sizing : border-box;
+  font-size : 30px;
+  margin : 0px 10px 0px 10px;
+`
+
+const LineTitle = ({ title }) => {
+  return (
+    <Container>
+      <Line />
+      <Title>
+        {title}
+      </Title>
+      <Line />
+    </Container>
+  )
 }
 
-
-const LineTitle = ({title}) => {
-  return ( 
-      <div style={styles.container}>
-        <div style={styles.line}></div>
-          <h2 style={styles.headTitle}>
-             {title}
-          </h2>
-       <div style={styles.line}></div>
-      </div>
-  )
+LineTitle.propTypes = {
+  title: PropTypes.string.isRequired,
 }
 
 export default LineTitle

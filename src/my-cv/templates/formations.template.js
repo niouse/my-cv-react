@@ -3,31 +3,21 @@ import PropTypes from 'prop-types'
 import { Box } from 'grid-styled'
 import styled from 'styled-components';
 import LineTitle from "./../components/line-title.component.js"
-import Container from './../components/container.component.js'
+
+import {Container, Title} from './../components/styled-components'
 import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
-const Text = styled.div`
-  font-size : 1.5em;
-  font-weight : 900;
-  color : white;
-  padding-bottom : 10px;
-  text-align : center;
-  width : 100%;
-`
 
-const Dates = Text.extend`
+
+const Dates = Title.extend`
   letter-spacing : 8px;
 `
 
-const Title = Text.extend`
-  font-size : 1.2em;
-  font-weight : 300;
-`
 
-const Formations = ({ formations }) => {
+const Formations = ({ formations, texts }) => {
   return (
     <Container id="formations">
-      <LineTitle title={"FORMATIONS"} />
+      <LineTitle title={texts.title} />
       <Box m="auto">
         {
           formations.map((item, index) => {
@@ -35,7 +25,7 @@ const Formations = ({ formations }) => {
               <Box key={"formation" + index} pb="80px">
                 <Dates>{item.startDate + '-' + item.endDate}</Dates>
                 <Title>{item.title}</Title>
-                <Text>{item.schoolName + ' - ' + item.location}</Text>
+                <Title>{item.schoolName + ' - ' + item.location}</Title>
               </Box>
             )
           })

@@ -1,9 +1,8 @@
-const scrollTo = ( e, target ) => {
-  e.preventDefault();
+const scrollTo = ( target ) => {
   window.scrollTo( {
     "behavior": "smooth",
     "left": 0,
-    "top": document.getElementById( target ).offsetTop
+    "top": target.offsetTop
   } );
 };
 

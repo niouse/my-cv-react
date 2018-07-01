@@ -1,54 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Flex } from 'grid-styled'
-import styled from 'styled-components';
-
 import ExperienceDetail from "./experience-detail.template.js"
 
-import Container from './../components/container.component.js'
+import { Container, CenterAll, P, H3 } from './../components/styled-components'
 import LineTitle from "./../components/line-title.component.js"
 import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
 
-const ExpContainer = styled(Flex).attrs({
-  flexDirection : "column",
-  alignItems : "center",
-  justifyContent : "center",
-  p : "20px 0px 35px 0px",
-  width : "100%",
-})`
-cursor : pointer;
-&:hover {
-  background-color : rgba(0,0,0,0.5);
-}
+const ExpContainer = CenterAll.extend`
+  cursor : pointer;
+  padding : 20px 0px 35px 0px;
+  margin : 10px 0px;
+  width : 100%;
+  height : 200px;
+  flex-direction : column;
+  border-radius : 200px;
+  &:hover {
+    background-color : rgba(0,0,0,0.5);
+  };
 `
-const Text = styled.div`
-  margin : 0;
-  padding : 10px 0px 10px 0px;
-  font-size : 18px;
-`
-
-const Title = Text.extend`
-  line-height : 20px;
-  font-weight : 300;
-`
-
-const P = styled.p`
-    max-width : 400px;
-    text-align : center;
-    font-style : italic;
-    font-size : 14px;
-    line-height : 28px;
-`
-
 
 const Experiences = (props) => {
   const {
     experiences,
     openDetails,
     detailIndex,
-  }=props
+  } = props
   return (
     <Container id="experiences" backgroundColor="#281D24" color="white">
       <LineTitle title="EXPERIENCES" />
@@ -56,35 +34,35 @@ const Experiences = (props) => {
         experiences.map((item, index) => {
           return (
             <ExpContainer
-              key={"experience" + index}             
-              onClick={() => openDetails(index)} >
-              <Text>{item.startDate} - {item.endDate}</Text>
-              <Title>{item.title}</Title>
+              key={"experience" + index}
+              onClick={() => openDetails(index)}>
+              <P>{item.startDate} - {item.endDate}</P>
+              <H3>{item.title}</H3>
               <P>{item.description}</P>
-              {item.society && <div>{item.society.name}</div>}
+              {item.society && <P>{item.society.name}</P>}
             </ExpContainer>
           )
         })
       }
       <ScrollTop />
-      <ExperienceDetail 
+      <ExperienceDetail
         {...props}
         exp={experiences[detailIndex]}
-        />
+      />
     </Container>
   )
 }
 
-Experiences.propTypes={
-  experiences : PropTypes.arrayOf(PropTypes.shape({
-    startDate : PropTypes.string.isRequired,
-    endDate : PropTypes.string.isRequired,
-    title : PropTypes.string.isRequired,
-    description : PropTypes.string.isRequired,
-    society : PropTypes.object
+Experiences.propTypes = {
+  experiences: PropTypes.arrayOf(PropTypes.shape({
+    startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    society: PropTypes.object
   })).isRequired,
   openDetails: PropTypes.func.isRequired,
-  detailIndex : PropTypes.number.isRequired
+  detailIndex: PropTypes.number.isRequired
 }
 
 export default Experiences;

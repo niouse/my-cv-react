@@ -6,16 +6,18 @@ import styled from 'styled-components';
 
 import enFlag from './../images/flags/uk.png'
 import frFlag from './../images/flags/fr.png'
+import { isPc, getTheme } from '../api/theme-utils';
 
 
 const FixedWrapper = styled.div`
   width : 100%;
   position : fixed;
   top : 0;
-  background-color : rgba(1,0,1,0.7);
+  background-color : ${({bgColor})=>bgColor};
 `
 
-const Container = styled(Flex)`
+const Container = styled.div`
+  display : flex;
   width : 100%;
   justify-content : space-between;
   align-items : center;
@@ -25,17 +27,16 @@ const Container = styled(Flex)`
 `
 
 const Nav = styled.nav`
-  display : ${({ theme }) => theme.device === "pc" ? "flex" : "none"};
+  display : ${isPc('flex', 'none')};
   justify-content : flex-end;
   align-items : center;
-  font-size : 0.9em;
-  color : #B5A9B7;
 `
 
 const NavButton = styled.a`
   padding : 0px 8px 0px 8px;
   text-decoration : none;
-  color : #C5B7B8;
+  color : ${({textColor})=>textColor};
+  font-size : 0.7em;
 `
 
 const NavOption = NavButton.withComponent('option')
@@ -47,7 +48,7 @@ const Flag = styled.img`
 `
 
 const Select = styled.select`
-  display : ${({ theme }) => theme.device === "pc" ? "none" : "inline"};
+  display : ${isPc('none', 'inline')};
   background-color : transparent;
   margin-right : 10px;
   height : 30px;
@@ -59,9 +60,11 @@ const Navigation = (props) => {
     navItems,
     setLanguage,
     scrollTo,
+    bgColor,
+    textColor,
   } = props
-  return (
-    <FixedWrapper>
+  return ( 
+    <FixedWrapper bgColor={bgColor}>
       <Container>
         <div>
           <Flag
@@ -80,6 +83,7 @@ const Navigation = (props) => {
                 <NavButton
                   href={item.link}
                   key={'navItem' + index}
+                  textColor={textColor}
                   onClick={(e) => scrollTo(e, item.link)}>
                   {item.text}
                 </NavButton>

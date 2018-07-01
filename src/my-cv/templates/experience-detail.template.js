@@ -12,6 +12,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Slide from '@material-ui/core/Slide';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { isPc } from '../api/theme-utils';
 
 const SectionTitle = styled.div`
   color : grey;
@@ -21,7 +22,7 @@ const SectionTitle = styled.div`
   margin-bottom : 20px;
 `
 const Container = styled.div`
-  padding : ${ ({ theme }) => theme.device === 'pc' ? "50px" : "10px"};
+  padding : ${isPc('50px', '10px')};
   color : grey;
 `
 
@@ -96,7 +97,6 @@ const ExperienceDetail = ({
     </Dialog>
   )
 }
-
 
 ExperienceDetail.propTypes = {
   exp: PropTypes.shape({

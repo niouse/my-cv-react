@@ -1,32 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
 import up from "./up.png"
+import styled from 'styled-components';
 
-const styles = {
-  container : {
-    display : "flex",
-    justifyContent : "center",
-    alignItems : "center",
-    height : "150px"
-  },
-  arrow : {
-    background: `url(${up})`,
-    width: "48px",
-    height : "48px",
-    cursor : "pointer",
-  },
+const Container = styled.div`
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  height : 150px;
+`
+
+const Arrow = styled.div`
+  background : url(${up});
+  width : 48px;
+  height : 48px;
+  cursor : pointer;
+`
+
+class ScrollTop extends Component {
+
+  scrollTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      'behavior': 'smooth',
+      'left': 0,
+      'top': 0
+    })
+  }
+
+  render(){
+    return (
+      <Container>
+         <Arrow  onClick={this.scrollTop} /> 
+      </Container>
+    )
+  }
 }
 
-
-const ScrollTop = (props)=>{
-  return (
-    <div style={styles.container}>
-       <div style={styles.arrow}  onClick={(e)=>{e.preventDefault();window.scrollTo({
-        'behavior': 'smooth',
-        'left': 0,
-        'top': 0
-      })}}> </div>
-    </div>
-  )
-}
 
 export default ScrollTop

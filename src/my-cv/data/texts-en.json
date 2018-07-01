@@ -1,0 +1,22 @@
+{
+    "banner": {
+       "beforeName": "My name is"
+    },
+    "experiences": {
+       "title": "EXPERIENCES"
+    },
+    "skills": {
+       "title": "SKILLS"
+    },
+    "formations": {
+       "title": "FORMATIONS"
+    },
+    "contact": {
+       "title": "CONTACT",
+       "email": "your name",
+       "name": "your email",
+       "message": "your message",
+       "submit": "SEND",
+       "contactMessage": "Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem  quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh  id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit."
+    }
+ }
