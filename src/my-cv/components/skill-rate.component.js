@@ -34,7 +34,7 @@ const SkillRate = ({ name, rate }) => {
       <Flex>
         {
           rateArray
-              .map((item, index) => index + 1 > rate)
+            .map((item, index) => index + 1 > rate)
             .map((isPrim, index) => <Circle key={"circle" + index} primary={isPrim} />)
         }
       </Flex>
