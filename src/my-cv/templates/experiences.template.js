@@ -9,15 +9,15 @@ import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
 
 const ExpContainer = CenterAll.extend`
-  cursor : pointer;
+  flex-direction : column;
   padding : 20px 0px 35px 0px;
   margin : 10px 0px;
   width : 100%;
   height : 200px;
-  flex-direction : column;
   border-radius : 200px;
+  cursor : pointer;
   &:hover {
-    background-color : rgba(0,0,0,0.5);
+    background-color : ${props => props.hoverColor};
   };
 `
 
@@ -26,6 +26,7 @@ const Experiences = (props) => {
     experiences,
     openDetails,
     detailIndex,
+    hoverColor = 'black',
   } = props
   return (
     <Container id="experiences" backgroundColor="#281D24" color="white">
@@ -35,7 +36,8 @@ const Experiences = (props) => {
           return (
             <ExpContainer
               key={"experience" + index}
-              onClick={() => openDetails(index)}>
+              onClick={() => openDetails(index)}
+              hoverColor={hoverColor}>
               <P>{item.startDate} - {item.endDate}</P>
               <H3>{item.title}</H3>
               <P>{item.description}</P>
@@ -62,7 +64,8 @@ Experiences.propTypes = {
     society: PropTypes.object
   })).isRequired,
   openDetails: PropTypes.func.isRequired,
-  detailIndex: PropTypes.number.isRequired
+  detailIndex: PropTypes.number.isRequired,
+  hoverColor : PropTypes.string
 }
 
 export default Experiences;

@@ -3,24 +3,29 @@ import PropTypes from 'prop-types'
 import { Box } from 'grid-styled'
 
 import ScrollTop from './../components/scroll-top/scroll-top.component.js'
-import nodejs from "./../images/nodejs.png"
+
 
 import styled from 'styled-components';
 import { Container, CenterAll, H2, H3, P } from './../components/styled-components'
-import { getTheme, isPc } from '../api/theme-utils';
+import { isPc } from '../api/theme-utils';
 
+
+const BgBox = Container.extend`
+  background : ${props => `url(${props.bg})`};
+  background-size : cover;
+  width : 100%;
+  max-width : 100%;
+`
 
 const CenterBox = CenterAll.extend`
-  flex-direction : ${isPc('row', 'column')};
   flex : 1;
+  flex-direction : ${isPc('row', 'column')};
   max-width : 800px;
   margin : auto;
 `
 
 const NameBox = H3.extend`
   text-align : ${isPc('left', 'center')};
-  color:${getTheme('text3')};
-  line-height: 1.1;
 `
 
 const ImageBox = CenterAll.extend`
@@ -28,14 +33,17 @@ const ImageBox = CenterAll.extend`
   height : 250px;
 `
 
-const Image = styled.img`
+const Image = styled.img.attrs({
+  id: "diamond",
+  src: props => props.image,
+  alt: "#",
+})`
   height : 120px;
 `
 
 const Name = styled.strong`
-  color:${({ theme }) => theme.text2};
-  font-size : 2em;
   padding-left : 10px;
+  font-size : 2em;
 `
 
 const Title = H2.extend`
@@ -45,27 +53,29 @@ const Title = H2.extend`
 const Banner = ({
   infos,
   title,
-  texts
+  texts,
+  image,
+  bg,
 }) => {
   return (
-    <Container id="banner">
+    <BgBox id="banner" bg={bg}>
       <CenterBox>
         <ImageBox>
-          <Image id="diamond" src={nodejs} alt="#" />
+          <Image image={image} />
         </ImageBox>
         <Box>
           <NameBox>
             {texts.beforeName}
             <Name>
               {infos.firstName + " " + infos.lastName}
-            </Name>
+             </Name>
           </NameBox>
           <Title>{title}</Title>
           <P>{infos.presentation}</P>
         </Box>
       </CenterBox>
       <ScrollTop />
-    </Container>
+    </BgBox>
   )
 }
 
@@ -78,6 +88,8 @@ Banner.propTypes = {
   title: PropTypes.string,
   texts: PropTypes.shape({
     beforeName: PropTypes.string.isRequired
-  })
+  }),
+  image: PropTypes.string.isRequired,
+  bg: PropTypes.string.isRequired
 }
 export default Banner

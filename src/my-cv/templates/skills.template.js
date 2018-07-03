@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Flex, Box } from 'grid-styled'
+import { Box } from 'grid-styled'
 import styled from 'styled-components';
 
 import { Container } from './../components/styled-components'
@@ -11,10 +11,11 @@ import SkillRate from "./../components/skill-rate.component.js"
 
 import formatSkills from './../api/format-skills'
 
-const AroundBox = styled(Flex)`
-  max-width:900px;
+const AroundBox = Container.extend`
   flex-wrap : wrap;
+  flex-direction : row;
   justify-content : space-around;
+  max-width:900px;
 `
 
 const SkillBox = styled.div`
@@ -51,20 +52,18 @@ const SkillsContainer = ({ title, skills }) => (
 const Skills = ({ skills, texts }) => {
   const formatedSkills = formatSkills(skills)
   return (
-    <Container id="skills">
+    <AroundBox id="skills">
       <LineTitle title={texts.title} />
-      <AroundBox>
-        {
-          formatedSkills.map((item, index) => {
-            return <SkillsContainer
-              key={"skill" + index}
-              title={item.type}
-              skills={item.skills} />
-          })
-        }
-      </AroundBox>
+      {
+        formatedSkills.map((item, index) => {
+          return <SkillsContainer
+            key={"skill" + index}
+            title={item.type}
+            skills={item.skills} />
+        })
+      }
       <ScrollTop />
-    </Container>
+    </AroundBox>
   )
 }
 
@@ -78,7 +77,10 @@ Skills.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     rate: PropTypes.number.isRequired,
-  })).isRequired
+  })).isRequired,
+  texts : PropTypes.shape({
+    title : PropTypes.string.isRequired
+  }).isRequired
 }
 
 export default Skills

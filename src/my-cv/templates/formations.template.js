@@ -1,18 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Box } from 'grid-styled'
-import styled from 'styled-components';
 import LineTitle from "./../components/line-title.component.js"
 
 import {Container, Title} from './../components/styled-components'
 import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
 
-
 const Dates = Title.extend`
   letter-spacing : 8px;
 `
-
 
 const Formations = ({ formations, texts }) => {
   return (
@@ -41,7 +38,11 @@ Formations.propTypes = {
     startDate: PropTypes.string.isRequired,
     endDate: PropTypes.string.isRequired,
     schoolName: PropTypes.string.isRequired
-  })).isRequired
+  })).isRequired,
+  texts : PropTypes.shape({
+    title : PropTypes.string.isRequired
+  }).isRequired
+
 }
 
 export default Formations

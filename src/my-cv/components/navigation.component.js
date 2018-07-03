@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Flex } from 'grid-styled'
 import styled from 'styled-components';
 
 import enFlag from './../images/flags/uk.png'
 import frFlag from './../images/flags/fr.png'
-import { isPc, getTheme } from '../api/theme-utils';
+import { isPc } from '../api/theme-utils';
+
+import scrollTo from './../api/scroll-to'
+
+
+const MOVE_BORDER_COLOR_DEFAULT = "#9A9A9A"
 
 
 const FixedWrapper = styled.div`
@@ -34,11 +38,10 @@ const Nav = styled.nav`
 `
 
 const NavButton = styled.a`
-  padding : 0px 8px 0px 8px;
   text-decoration : none;
   color : ${({ textColor }) => textColor};
   font-size : 0.7em;
-  width : 90px;
+  width : 100px;
   text-align : center;
 `
 
@@ -58,42 +61,36 @@ const Select = styled.select`
   color : white;
 `
 
-const MovingBox = styled.div`
-  position : absolute; 
-  left : 100px;
-  width : 106px;
-  height : 45px;
-  background-color : transparent;
-  border : 1px solid red;
-`
 
 class Navigation extends Component {
-  
-  scrollTo = (e) => {
-    e.preventDefault()
-    const el = e.currentTarget
-    const link = el.dataset.link
-    const target = document.getElementById(link)
-    this.props.scrollTo(target)
 
-    const movBox =  document.getElementById('moving-box')
-    this.moveTo(movBox, el)
+  constructor() {
+    super()
+  }
+
+  componentDidMount() {
+  }
+
+  scrollRequest = (e) => {
+    e.preventDefault()
+    const link = e.currentTarget.dataset.link
+    const target = document.getElementById(link)
+    scrollTo(target)
+  }
+
+  scrollToMob = (e) => {
+    e.preventDefault()
+    const value = e.currentTarget.value
+    const target = document.getElementById(value)
+    scrollTo(target)
   }
 
   setLanguage = (e) => this.props.setLanguage(e.currentTarget.dataset.lng)
 
-  moveTo = (fromEl, toEl) => {
-    fromEl.style.left = toEl.offsetLeft+'px'
-    let left=Number(fromEl.style.left.replace('px', ''))
-    console.log(left)
-    const diff = Math.abs(left-toEl.offsetLeft)
-    console.log(toEl.offsetLeft)
-  }
 
   render() {
     const {
       navItems,
-      scrollTo,
       bgColor,
       textColor,
     } = this.props
@@ -113,7 +110,6 @@ class Navigation extends Component {
               alt="fr flag" />
           </div>
           <Nav id="navigation">
-          <MovingBox id="moving-box"/>
             {navItems.map((item, index) => {
               return (
                 <NavButton
@@ -122,20 +118,22 @@ class Navigation extends Component {
                   key={'navItem' + index}
                   id={'navItem-' + index}
                   textColor={textColor}
-                  onClick={this.scrollTo}>
+                  onClick={this.scrollRequest}>
                   {item.text}
                 </NavButton>
               )
             })}
           </Nav>
-          <Select onChange={(e) => scrollTo(e, e.currentTarget.value)}>
+          <Select onChange={this.scrollToMob}>
             {
               navItems.map((item, index) => {
                 return (
                   <NavOption
                     key={'menuItem' + index}
+                    data-link={item.link}
                     value={item.link}>
                     {item.text}
+
                   </NavOption>
                 )
               })
@@ -148,13 +146,20 @@ class Navigation extends Component {
   }
 }
 
+Navigation.defaultProps = {
+  bgColor: "none",
+  textColor: "white",
+  borderColor: MOVE_BORDER_COLOR_DEFAULT
+}
+
 Navigation.propTypes = {
   navItems: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired
   })).isRequired,
   setLanguage: PropTypes.func.isRequired,
-  scrollTo: PropTypes.func.isRequired,
+  bgColor: PropTypes.string,
+  textColor: PropTypes.string,
 }
 
 export default Navigation

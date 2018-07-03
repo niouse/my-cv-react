@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
+import nodejsImg from "./images/nodejs.png";
+import bannerImg from "./images/banner.jpg";
 
 import Banner from './templates/banner.template'
 import Experiences from "./templates/experiences.template"
@@ -11,21 +13,16 @@ import Formations from "./templates/formations.template.js"
 
 import Navigation from './components/navigation.component'
 
-import banner from "./images/banner.jpg"
 import contact from "./images/footerbg.jpg"
 import { isPrim } from './api/theme-utils';
 
-import scrollTo from "./api/scroll-to.js"
 import withData from './api/with-data'
 import withTheme from './api/with-theme'
 
 const Header = styled.header`
   display : flex;
   flex-direction : column;
-  background : url(${banner});
   min-height : 700px;
-  width : 100%;
-  background-size : cover;
 `
 
 const Section = styled.section`
@@ -41,7 +38,7 @@ const Footer = styled.footer`
 `
 
 class App extends Component {
-  constructor({ defaultLanguage = "en" }) {
+  constructor() {
     super()
     this.state = {
       isDetailOpen: false,
@@ -69,25 +66,27 @@ class App extends Component {
   }
 
   render() {
+    const { setLanguage, navItems, cv, texts, theme } = this.props
     return (
       <Fragment>
         <Header>
           <Navigation
-            scrollTo={scrollTo}
-            setLanguage={this.props.setLanguage}
-            navItems={this.props.navItems}
-            bgColor={this.props.theme.nav} 
-            textColor={this.props.theme.text3}/>
+            setLanguage={setLanguage}
+            navItems={navItems}
+            bgColor={theme.nav}
+            textColor={theme.text3} />
           <Banner
-            infos={this.props.cv.personalInfos}
-            title={this.props.cv.title}
-            texts={this.props.texts.banner}
+            infos={cv.personalInfos}
+            title={cv.title}
+            texts={texts.banner}
+            image={nodejsImg}
+            bg={bannerImg}
           />
         </Header>
         <Section primary>
           <Experiences
-            experiences={this.props.cv.experiences}
-            texts={this.props.texts.experiences}
+            experiences={cv.experiences}
+            texts={texts.experiences}
             openDetails={this.openDetails}
             closeDetails={this.closeDetails}
             isDetailOpen={this.state.isDetailOpen}
@@ -96,19 +95,19 @@ class App extends Component {
         </Section>
         <Section>
           <Skills
-            skills={this.props.cv.skills}
-            texts={this.props.texts.skills}
-          />  
+            skills={cv.skills}
+            texts={texts.skills}
+          />
         </Section>
         <Section primary>
           <Formations
-            formations={this.props.cv.formations}
-            texts={this.props.texts.formations}
+            formations={cv.formations}
+            texts={texts.formations}
           />
         </Section>
         <Footer>
           <Contact
-            texts={this.props.texts.contact}
+            texts={texts.contact}
             submitForm={this.submitForm}
           />
         </Footer>
@@ -120,14 +119,15 @@ class App extends Component {
 App.propTypes = {
   cv: PropTypes.object.isRequired,
   texts: PropTypes.object.isRequired,
-  naItems : PropTypes.array.isRequired,
-  setLanguage :PropTypes.func,
+  navItems: PropTypes.array.isRequired,
+  setLanguage: PropTypes.func,
+  theme: PropTypes.object.isRequired
 }
 
 
-App = withTheme()(App)
-App = withData()(App)
+const WithTheme = withTheme()(App)
+const WithData = withData()(WithTheme)
 
-export default App
+export default WithData
 
 

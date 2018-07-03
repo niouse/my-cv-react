@@ -7,6 +7,7 @@ const Container = styled.div`
   justify-content : center;
   align-items : center;
   height : 150px;
+  width : 100%;
 `
 
 const Arrow = styled.div`
@@ -27,10 +28,10 @@ class ScrollTop extends Component {
     })
   }
 
-  render(){
+  render() {
     return (
       <Container>
-         <Arrow  onClick={this.scrollTop} /> 
+        <Arrow onClick={this.scrollTop} />
       </Container>
     )
   }

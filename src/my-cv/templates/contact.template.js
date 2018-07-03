@@ -17,19 +17,19 @@ const CenterBox = styled(Flex)`
   flex-direction : ${isPc('row', 'column')};
 `
 
-const InfosBox = styled(Flex)`
-  width : ${isPc('50%', '90%')};
-  padding : 10px;
-  align-items : center;
+const LeftBox = styled.div`
+  display : flex;
   flex-direction : column;
-  text-align : ${isPc('left', 'center')};
+  align-items : center;
+  justify-content : center;
+  width : 50%;
+  padding : 10px;
   margin : auto;
 `
 
-const FormBox = InfosBox.extend`
-  width : 50%;
-  justify-content : center;
-  flex-direction : row;
+const RightBox = LeftBox.extend`
+  text-align : ${isPc('left', 'center')};
+  width : ${isPc('50%', '90%')};
 `
 
 const Link = styled.a`
@@ -49,7 +49,7 @@ const Contact = ({
     <Container id="contact" >
       <LineTitle title={texts.title} />
       <CenterBox>
-        <InfosBox>
+        <RightBox>
           <Box width="80%">
             <Link href="/#"><img src={linkedin} alt="linkedin" /></Link>
             <Link href="/#"><img src={twitter} alt="twitter" /></Link>
@@ -58,13 +58,13 @@ const Contact = ({
           <Message>
             {texts.contactMessage}
           </Message>
-        </InfosBox>
-        <FormBox>
+        </RightBox>
+        <LeftBox>
           <ContactForm
             texts={texts}
             submiForm={submitForm}
           />
-        </FormBox>
+        </LeftBox>
       </CenterBox>
     </Container>
   )

@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "eslint-config-standard-jsx": "^5.0.0",
+    "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-react": "^7.10.0",
     "prop-types": "^15.6.2"
   }

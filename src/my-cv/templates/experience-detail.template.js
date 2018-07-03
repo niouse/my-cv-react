@@ -14,16 +14,18 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { isPc } from '../api/theme-utils';
 
+const Bar = styled(AppBar).attrs({
+  style : props => ({backgroundColor : props.barbg}),
+})`
+  position: relative;
+`
+
 const SectionTitle = styled.div`
-  color : grey;
-  font-size : 1.1em;
-  font-weight : 900;
-  border-bottom : 1px solid grey;
+  border-bottom : 1px solid;
   margin-bottom : 20px;
 `
 const Container = styled.div`
   padding : ${isPc('50px', '10px')};
-  color : grey;
 `
 
 function Transition(props) {
@@ -34,6 +36,7 @@ const ExperienceDetail = ({
   exp,
   closeDetails,
   isDetailOpen,
+  barbg='green'
 }) => {
   return (
     <Dialog
@@ -42,11 +45,7 @@ const ExperienceDetail = ({
       fullWidth
       fullScreen
       TransitionComponent={Transition}>
-      <AppBar
-        style={{
-          position: "relative",
-          backgroundColor: "#281D24"
-        }}>
+      <Bar barbg={barbg}>
         <Toolbar>
           <IconButton color="inherit" onClick={closeDetails} aria-label="Close">
             <CloseIcon />
@@ -54,7 +53,7 @@ const ExperienceDetail = ({
           {exp.title}
           {exp.startDate}-{exp.endDate}
         </Toolbar>
-      </AppBar>
+      </Bar>
 
       <Container>
         <Flex justifyContent="space-between" pb="40px">
@@ -73,7 +72,7 @@ const ExperienceDetail = ({
           </ul>
         </Box>
         <Box pb="70px">
-          <SectionTitle>MISSIONS  </SectionTitle>
+          <SectionTitle> MISSIONS  </SectionTitle>
           <ul>
             {exp.missions.map((mission, index) => (
               <li key={"mission" + index}>{mission}</li>
@@ -108,6 +107,7 @@ ExperienceDetail.propTypes = {
   }).isRequired,
   closeDetails: PropTypes.func.isRequired,
   isDetailOpen: PropTypes.bool.isRequired,
+  barbg : PropTypes.string
 }
 
 export default ExperienceDetail

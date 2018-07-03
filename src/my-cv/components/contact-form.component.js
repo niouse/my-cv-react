@@ -39,7 +39,7 @@ const Button = styled.input`
   `
 
 class ContactForm extends Component {
-  constructor(props) {
+  constructor() {
     super()
     this.state = {
       email: "",
@@ -57,7 +57,7 @@ class ContactForm extends Component {
     if (this.props.submitForm && typeof (this.props.submitForm === "function")) {
       this.props.submitForm({ ...this.state })
     }
-    else console.log('no submit function has been passed to contact form')
+    else alert('no submit function has been passed to contact form')
   }
 
   render() {
