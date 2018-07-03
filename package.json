@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --coverage",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged && npm run test"
   },
@@ -30,6 +30,7 @@
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-react": "^7.10.0",
     "husky": "^0.14.3",
+    "jest-extended": "^0.7.2",
     "prop-types": "^15.6.2",
     "react-test-renderer": "^16.4.1"
   }
