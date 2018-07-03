@@ -59,9 +59,8 @@ class ContactForm extends Component {
     }
     else alert('no submit function has been passed to contact form')
   }
-  
+
   render() {
-    console.log('mon pote')
     const { texts } = this.props
     return (
       <Form onSubmit={this.submitForm}>
