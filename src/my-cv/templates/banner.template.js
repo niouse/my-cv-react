@@ -68,7 +68,7 @@ const Banner = ({
             {texts.beforeName}
             <Name>
               {infos.firstName + " " + infos.lastName}
-             </Name>
+            </Name>
           </NameBox>
           <Title>{title}</Title>
           <P>{infos.presentation}</P>

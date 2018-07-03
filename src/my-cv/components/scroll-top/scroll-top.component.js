@@ -29,6 +29,7 @@ class ScrollTop extends Component {
   }
 
   render() {
+    
     return (
       <Container>
         <Arrow onClick={this.scrollTop} />

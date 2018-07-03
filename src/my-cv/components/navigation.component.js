@@ -64,10 +64,6 @@ const Select = styled.select`
 
 class Navigation extends Component {
 
-  constructor() {
-    super()
-  }
-
   componentDidMount() {
   }
 
