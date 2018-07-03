@@ -14,6 +14,7 @@ import {
 } from "./../components/styled-components";
 import { isPc } from "../api/theme-utils";
 
+
 const BgBox = Container.extend`
   background: ${props => `url(${props.bg})`};
   background-size: cover;

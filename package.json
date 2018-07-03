@@ -16,19 +16,21 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged; npm run test"
   },
   "lint-staged": {
-    "*.js": "eslint",
-    "*.css": "stylelint"
+    "*.js": "eslint"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-standard-jsx": "^5.0.0",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-react": "^7.10.0",
     "husky": "^0.14.3",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "react-test-renderer": "^16.4.1"
   }
 }

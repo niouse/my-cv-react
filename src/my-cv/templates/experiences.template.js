@@ -65,7 +65,7 @@ Experiences.propTypes = {
   })).isRequired,
   openDetails: PropTypes.func.isRequired,
   detailIndex: PropTypes.number.isRequired,
-  hoverColor : PropTypes.string
+  hoverColor: PropTypes.string
 }
 
 export default Experiences;

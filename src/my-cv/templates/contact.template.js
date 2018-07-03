@@ -74,7 +74,7 @@ Contact.propTypes = {
   submitForm: PropTypes.func.isRequired,
   texts: PropTypes.shape({
     contactMessage: PropTypes.string.isRequired,
-    title : PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired
 }
 
