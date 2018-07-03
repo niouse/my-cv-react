@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged; npm run test"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": "eslint"
