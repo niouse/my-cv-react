@@ -50,7 +50,7 @@ const SkillsContainer = ({ title, skills }) => (
 )
 
 const Skills = ({ skills, texts }) => {
-  const formatedSkills = formatSkills(skills)
+   const formatedSkills = formatSkills(skills)
   return (
     <AroundBox id="skills">
       <LineTitle title={texts.title} />
