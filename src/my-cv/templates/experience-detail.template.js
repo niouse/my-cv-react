@@ -4,28 +4,24 @@ import PropTypes from 'prop-types'
 import { Box, Flex } from 'grid-styled'
 import styled from 'styled-components';
 
-import check from './../images/check.png'
-
 import Dialog from '@material-ui/core/Dialog';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Slide from '@material-ui/core/Slide';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { isPc } from '../api/theme-utils';
+import { ToolBar, Title2, Title, Date, Check, Logo } from '../components/styled-components';
 
-const Bar = styled(AppBar).attrs({
-  style : props => ({backgroundColor : props.barbg}),
-})`
-  position: relative;
+const Container = styled.div`
+  padding : ${isPc('50px', '10px')};
 `
 
-const SectionTitle = styled.div`
+const SectionTitle = Title.extend`
   border-bottom : 1px solid;
   margin-bottom : 20px;
 `
-const Container = styled.div`
-  padding : ${isPc('50px', '10px')};
+
+const Ul = styled.ul`
+  list-style-type:none;
 `
 
 function Transition(props) {
@@ -36,7 +32,7 @@ const ExperienceDetail = ({
   exp,
   closeDetails,
   isDetailOpen,
-  barbg='green'
+  barbg = 'green'
 }) => {
   return (
     <Dialog
@@ -45,34 +41,32 @@ const ExperienceDetail = ({
       fullWidth
       fullScreen
       TransitionComponent={Transition}>
-      <Bar barbg={barbg}>
-        <Toolbar>
-          <IconButton color="inherit" onClick={closeDetails} aria-label="Close">
-            <CloseIcon />
-          </IconButton>
-          {exp.title}
-          {exp.startDate}-{exp.endDate}
-        </Toolbar>
-      </Bar>
+      <ToolBar>
+        <IconButton color="inherit" onClick={closeDetails} aria-label="Close">
+          <CloseIcon />
+        </IconButton>
+        <Title2>{exp.title}</Title2>
+        <Date>{exp.startDate}-{exp.endDate}</Date>
+      </ToolBar>
 
       <Container>
-        <Flex justifyContent="space-between" pb="40px">
+        <Flex justifyContent="space-between" pb="10px">
           <div>{exp.duration}</div>
           <div>{exp.type}</div>
         </Flex>
-        <Box pb="70px">
-          <SectionTitle>  DESCRIPTION  </SectionTitle>
+        <Box pb="30px">
+          <SectionTitle tertiary>  DESCRIPTION  </SectionTitle>
           <div>{exp.description}</div>
-          <ul>
+          <Ul>
             {exp.skillsLearned.map((skillsLearned, index) => (
               <li key={"skillLearned" + index}>
-                <img src={check} alt="check" />{skillsLearned}
+                <Check />{skillsLearned}
               </li>
             ))}
-          </ul>
+          </Ul>
         </Box>
-        <Box pb="70px">
-          <SectionTitle> MISSIONS  </SectionTitle>
+        <Box pb="30px">
+          <SectionTitle tertiary> MISSIONS  </SectionTitle>
           <ul>
             {exp.missions.map((mission, index) => (
               <li key={"mission" + index}>{mission}</li>
@@ -80,14 +74,14 @@ const ExperienceDetail = ({
           </ul>
         </Box>
         <Box>
-          {exp.society && <SectionTitle>SOCIETE</SectionTitle>}
+          {exp.society && <SectionTitle tertiary>SOCIETE</SectionTitle>}
           {exp.society && (
             <div>
               <div>
                 <div>{exp.society.description}</div>
               </div>
               <a href={exp.society.link}>
-                <img src={exp.society.logo} alt="logo" />
+                <Logo logo={exp.society.logo} />
               </a>
             </div>
           )}
@@ -107,7 +101,7 @@ ExperienceDetail.propTypes = {
   }).isRequired,
   closeDetails: PropTypes.func.isRequired,
   isDetailOpen: PropTypes.bool.isRequired,
-  barbg : PropTypes.string
+  barbg: PropTypes.string
 }
 
 export default ExperienceDetail

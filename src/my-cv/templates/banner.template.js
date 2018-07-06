@@ -8,9 +8,9 @@ import styled from "styled-components";
 import {
   Container,
   CenterAll,
-  H2,
-  H3,
-  P
+  P,
+  BigText,
+  Title1,
 } from "./../components/styled-components";
 import { isPc } from "../api/theme-utils";
 
@@ -23,19 +23,10 @@ const BgBox = Container.extend`
 `;
 
 const CenterBox = CenterAll.extend`
-  flex: 1;
-  flex-direction: ${isPc("row", "column")};
-  max-width: 800px;
   margin: auto;
-`;
-
-const NameBox = H3.extend`
-  text-align: ${isPc("left", "center")};
-`;
-
-const ImageBox = CenterAll.extend`
-  width: ${isPc("500px", "250px")};
-  height: 250px;
+  max-width: 800px;
+  flex-direction: ${isPc("row", "column")};
+  flex: 1;
 `;
 
 const Image = styled.img.attrs({
@@ -46,30 +37,20 @@ const Image = styled.img.attrs({
   height: 120px;
 `;
 
-const Name = styled.strong`
-  padding-left: 10px;
-  font-size: 2em;
-`;
+const RespBox = styled(Box)`
+  justify-content :  ${isPc("flex-start", "center")};
+`
 
-const Title = H2.extend`
-  text-align: ${isPc("left", "center")};
-`;
-
-const Banner = ({ infos, title, texts, image, bg }) => {
+const Banner = ({ infos, title, image, bg }) => {
   return (
     <BgBox id="banner" bg={bg}>
       <CenterBox>
-        <ImageBox>
-          <Image image={image} />
-        </ImageBox>
-        <Box>
-          <NameBox>
-            {texts.beforeName}
-            <Name>{infos.firstName + " " + infos.lastName}</Name>
-          </NameBox>
-          <Title>{title}</Title>
+        <Image image={image} />
+        <RespBox pl="30px">
+          <BigText>{infos.firstName + " " + infos.lastName}</BigText>
+          <Title1>{title}</Title1>
           <P>{infos.presentation}</P>
-        </Box>
+        </RespBox>
       </CenterBox>
       <ScrollTop />
     </BgBox>
@@ -83,9 +64,6 @@ Banner.propTypes = {
     presentation: PropTypes.string.isRequired
   }),
   title: PropTypes.string,
-  texts: PropTypes.shape({
-    beforeName: PropTypes.string.isRequired
-  }),
   image: PropTypes.string.isRequired,
   bg: PropTypes.string.isRequired
 };

@@ -16,8 +16,12 @@ import Navigation from './components/navigation.component'
 import contact from "./images/footerbg.jpg"
 import { isPrim } from './api/theme-utils';
 
-import withData from './api/with-data'
-import withTheme from './api/with-theme'
+import withData from './services/with-data'
+import withTheme from './services/with-theme'
+import { Wrapper } from './components/styled-components';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const Header = styled.header`
   display : flex;
@@ -25,9 +29,8 @@ const Header = styled.header`
   min-height : 700px;
 `
 
-const Section = styled.section`
+const Section = Wrapper.extend`
   width : 100%;
-  background-color : ${isPrim('bg2', 'bg')};
 `
 
 const Footer = styled.footer`
@@ -45,22 +48,6 @@ class App extends Component {
       detailIndex: 0,
     }
   }
-
-  componentDidMount() {
-    this.callApi()
-      .then(res => alert(res.title))
-      .catch(err => console.log(err));
-  }
-
-  callApi = async () => {
-    const response = await fetch('/api/test');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
 
   openDetails = (index) => {
     this.setState({
@@ -80,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    const { setLanguage, navItems, cv, texts, theme } = this.props
+    const { setLanguage, navItems, texts, theme, infos, experiences, skills, formations } = this.props
     return (
       <Fragment>
         <Header>
@@ -89,41 +76,54 @@ class App extends Component {
             navItems={navItems}
             bgColor={theme.nav}
             textColor={theme.text3} />
-          <Banner
-            infos={cv.personalInfos}
-            title={cv.title}
-            texts={texts.banner}
-            image={nodejsImg}
-            bg={bannerImg}
-          />
+          {
+            infos ?
+              <Banner
+                infos={infos}
+                title={infos.title}
+                texts={texts.banner}
+                image={nodejsImg}
+                bg={bannerImg}
+              /> :
+              <CircularProgress />
+          }
         </Header>
         <Section primary>
-          <Experiences
-            experiences={cv.experiences}
-            texts={texts.experiences}
-            openDetails={this.openDetails}
-            closeDetails={this.closeDetails}
-            isDetailOpen={this.state.isDetailOpen}
-            detailIndex={this.state.detailIndex}
-          />
+          {experiences ?
+            <Experiences
+              experiences={experiences}
+              texts={texts.experiences}
+              openDetails={this.openDetails}
+              closeDetails={this.closeDetails}
+              isDetailOpen={this.state.isDetailOpen}
+              detailIndex={this.state.detailIndex}
+            /> :
+            <CircularProgress />}
         </Section>
         <Section>
-          <Skills
-            skills={cv.skills}
-            texts={texts.skills}
-          />
+          {skills ?
+            <Skills
+              skills={skills}
+              texts={texts.skills}
+            /> :
+            <CircularProgress />}
         </Section>
         <Section primary>
-          <Formations
-            formations={cv.formations}
-            texts={texts.formations}
-          />
+          {formations ?
+            <Formations
+              formations={formations}
+              texts={texts.formations}
+            /> :
+            <CircularProgress />
+          }
         </Section>
         <Footer>
-          <Contact
-            texts={texts.contact}
-            submitForm={this.submitForm}
-          />
+          {infos ?
+            <Contact
+              texts={texts.contact}
+              submitForm={this.submitForm}
+            /> :
+            <CircularProgress />}
         </Footer>
       </Fragment>
     );
@@ -131,7 +131,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-  cv: PropTypes.object.isRequired,
+  infos : PropTypes.object,
+  experiences : PropTypes.array,
+  formations : PropTypes.array,
+  skills : PropTypes.array,
   texts: PropTypes.object.isRequired,
   navItems: PropTypes.array.isRequired,
   setLanguage: PropTypes.func,

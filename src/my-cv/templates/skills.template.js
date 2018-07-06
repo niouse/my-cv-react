@@ -11,6 +11,8 @@ import SkillRate from "./../components/skill-rate.component.js";
 
 import formatSkills from "./../api/format-skills";
 
+import { Wrapper, Title } from "./../components/styled-components";
+
 const AroundBox = Container.extend`
   flex-wrap: wrap;
   flex-direction: row;
@@ -26,20 +28,15 @@ const SkillBox = styled.div`
   margin-bottom: 50px;
 `;
 
-const SkillType = styled.div`
-  font-size: 1em;
-  color: white;
-  font-weight: 900;
-  align-items: center;
-  display: flex;
-  padding: 10px;
-  background-color: ${"bg3"};
-  justify-content: center;
-`;
+const TitleBox = Wrapper.extend`
+  justify-content : center;
+  align-items : center;
+  height : 60px;
+  `
 
 const SkillsContainer = ({ title, skills }) => (
   <SkillBox>
-    <SkillType>{title.toUpperCase()}</SkillType>
+    <TitleBox tertiary><Title>{title.toUpperCase()}</Title></TitleBox>
     <Box pr="15px" pl="15px">
       {skills.map((item, index) => (
         <SkillRate key={title + index} name={item.name} rate={item.rate} />

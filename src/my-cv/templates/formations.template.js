@@ -6,10 +6,7 @@ import LineTitle from "./../components/line-title.component.js"
 import {Container, Title} from './../components/styled-components'
 import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
-
-const Dates = Title.extend`
-  letter-spacing : 8px;
-`
+import {Date} from './../components/styled-components'
 
 const Formations = ({ formations, texts }) => {
   return (
@@ -20,7 +17,7 @@ const Formations = ({ formations, texts }) => {
           formations.map((item, index) => {
             return (
               <Box key={"formation" + index} pb="80px">
-                <Dates>{item.startDate + '-' + item.endDate}</Dates>
+                <Date>{item.startDate + '-' + item.endDate}</Date>
                 <Title>{item.title}</Title>
                 <Title>{item.schoolName + ' - ' + item.location}</Title>
               </Box>

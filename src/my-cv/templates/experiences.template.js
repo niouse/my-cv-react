@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import ExperienceDetail from "./experience-detail.template.js"
 
-import { Container, CenterAll, P, H3 } from './../components/styled-components'
+import { Container, CenterAll, Text, Date, Title2 } from './../components/styled-components'
 import LineTitle from "./../components/line-title.component.js"
 import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
@@ -13,7 +13,7 @@ const ExpContainer = CenterAll.extend`
   padding : 20px 0px 35px 0px;
   margin : 10px 0px;
   width : 100%;
-  height : 200px;
+  height : 150px;
   border-radius : 200px;
   cursor : pointer;
   &:hover {
@@ -38,10 +38,9 @@ const Experiences = (props) => {
               key={"experience" + index}
               onClick={() => openDetails(index)}
               hoverColor={hoverColor}>
-              <P>{item.startDate} - {item.endDate}</P>
-              <H3>{item.title}</H3>
-              <P>{item.description}</P>
-              {item.society && <P>{item.society.name}</P>}
+              <Date>{item.startDate} - {item.endDate}</Date>
+              <Title2>{item.title}</Title2>
+              <Text>{item.description}</Text>
             </ExpContainer>
           )
         })
