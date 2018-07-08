@@ -9,7 +9,7 @@ import {Date} from './../components/styled-components'
 const Formations = ({ formations, texts }) => {
   return (
     <Container>
-      <Box m="auto">
+      <Box m="auto" width="100%">
         {
           formations.map((item, index) => {
             return (
