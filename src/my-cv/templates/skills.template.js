@@ -5,8 +5,6 @@ import { Box } from "grid-styled";
 import styled from "styled-components";
 
 import { Container } from "./../components/styled-components";
-import LineTitle from "./../components/line-title.component.js";
-import ScrollTop from "./../components/scroll-top/scroll-top.component.js";
 import SkillRate from "./../components/skill-rate.component.js";
 
 import formatSkills from "./../api/format-skills";
@@ -48,8 +46,7 @@ const SkillsContainer = ({ title, skills }) => (
 const Skills = ({ skills, texts }) => {
   const formatedSkills = formatSkills(skills);
   return (
-    <AroundBox id="skills">
-      <LineTitle title={texts.title} />
+    <AroundBox>
       {formatedSkills.map((item, index) => {
         return (
           <SkillsContainer
@@ -59,7 +56,6 @@ const Skills = ({ skills, texts }) => {
           />
         );
       })}
-      <ScrollTop />
     </AroundBox>
   );
 };

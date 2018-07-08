@@ -1,17 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Box } from 'grid-styled'
-import LineTitle from "./../components/line-title.component.js"
 
 import {Container, Title} from './../components/styled-components'
-import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
 import {Date} from './../components/styled-components'
 
 const Formations = ({ formations, texts }) => {
   return (
-    <Container id="formations">
-      <LineTitle title={texts.title} />
+    <Container>
       <Box m="auto">
         {
           formations.map((item, index) => {
@@ -25,7 +22,6 @@ const Formations = ({ formations, texts }) => {
           })
         }
       </Box>
-      <ScrollTop />
     </Container>
   )
 }

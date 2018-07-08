@@ -9,9 +9,15 @@ import twitter from "./../images/twt.png"
 import facebook from "./../images/fb.png"
 
 import { Container, P } from './../components/styled-components'
-import LineTitle from "./../components/line-title.component.js"
 import ContactForm from './../components/contact-form.component'
 import { isPc } from '../api/theme-utils';
+
+const BgBox = styled(Container)`
+  background: ${props => `url(${props.bg})`};
+  background-size: cover;
+  width: 100%;
+  max-width: 100%;
+`
 
 const CenterBox = styled(Flex)`
   flex-direction : ${isPc('row', 'column')};
@@ -44,10 +50,10 @@ const Message = P.extend`
 const Contact = ({
   submitForm,
   texts,
+  bg
 }) => {
   return (
-    <Container id="contact" >
-      <LineTitle title={texts.title} />
+    <BgBox bg={bg}>
       <CenterBox>
         <RightBox>
           <Box width="80%">
@@ -66,7 +72,7 @@ const Contact = ({
           />
         </LeftBox>
       </CenterBox>
-    </Container>
+    </BgBox>
   )
 }
 
@@ -75,7 +81,8 @@ Contact.propTypes = {
   texts: PropTypes.shape({
     contactMessage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
+  bg : PropTypes.string,
 }
 
 export default Contact

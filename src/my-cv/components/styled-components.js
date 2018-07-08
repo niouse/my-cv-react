@@ -12,7 +12,9 @@ export const Container = styled.div`
     max-width : 1080px;
     background-color : none;
     color : ${getTheme('text')};
+    overflow-y : auto;
 `
+
 export const Wrapper = styled.div`
   display : flex;
   flex-direction : column;
@@ -94,19 +96,19 @@ export const ToolBar = styled.div`
 `
 
 export const Check = styled.img.attrs({
-  alt : "#",
-  src : check,
+  alt: "#",
+  src: check,
 })`
   height : 10px;
   width : 10px;
 `
 
 export const Logo = styled.img.attrs({
-  alt : "#",
-  src : props => props.logo,
+  alt: "#",
+  src: props => props.logo,
 })`
   height : 64px;
   width : auto;
 `
 
-  
+

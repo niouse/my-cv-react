@@ -26,25 +26,23 @@ const texts = {
 
 const withData = () => (Wrapped) => {
   class Result extends Component {
-    
-    constructor({defaultLanguage}) {
+
+    constructor({ defaultLanguage }) {
       super()
       this.state = {
         cv: cv[defaultLanguage],
         navItems: navItems['fr'],
         texts: texts[defaultLanguage],
         lng: defaultLanguage,
-        isLoaded: {
-          infos: false,
-          experiences: false,
-          skills: false,
-          formations: false,
-        }
+        infos: false,
+        experiences: false,
+        skills: false,
+        formations: false,
       }
     }
 
     componentDidMount() {
-      this.populate(this.state.lng)
+      //this.populate(this.state.lng)
     }
 
     populate = (lng) => {

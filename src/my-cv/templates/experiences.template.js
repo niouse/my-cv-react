@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 import ExperienceDetail from "./experience-detail.template.js"
 
 import { Container, CenterAll, Text, Date, Title2 } from './../components/styled-components'
-import LineTitle from "./../components/line-title.component.js"
-import ScrollTop from './../components/scroll-top/scroll-top.component.js'
 
 
 const ExpContainer = CenterAll.extend`
@@ -29,8 +27,7 @@ const Experiences = (props) => {
     hoverColor = 'black',
   } = props
   return (
-    <Container id="experiences" backgroundColor="#281D24" color="white">
-      <LineTitle title="EXPERIENCES" />
+    <Container>
       {
         experiences.map((item, index) => {
           return (
@@ -45,7 +42,6 @@ const Experiences = (props) => {
           )
         })
       }
-      <ScrollTop />
       <ExperienceDetail
         {...props}
         exp={experiences[detailIndex]}

@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Box } from "grid-styled";
 
-import ScrollTop from "./../components/scroll-top/scroll-top.component.js";
-
 import styled from "styled-components";
 import {
   Container,
@@ -41,29 +39,28 @@ const RespBox = styled(Box)`
   justify-content :  ${isPc("flex-start", "center")};
 `
 
-const Banner = ({ infos, title, image, bg }) => {
+const Banner = ({ infos, image, bg }) => {
   return (
-    <BgBox id="banner" bg={bg}>
+    <BgBox bg={bg}>
       <CenterBox>
         <Image image={image} />
         <RespBox pl="30px">
           <BigText>{infos.firstName + " " + infos.lastName}</BigText>
-          <Title1>{title}</Title1>
+          <Title1>{infos.title}</Title1>
           <P>{infos.presentation}</P>
         </RespBox>
       </CenterBox>
-      <ScrollTop />
     </BgBox>
   );
 };
 
 Banner.propTypes = {
   infos: PropTypes.shape({
+    title : PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     presentation: PropTypes.string.isRequired
   }),
-  title: PropTypes.string,
   image: PropTypes.string.isRequired,
   bg: PropTypes.string.isRequired
 };
