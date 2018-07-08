@@ -25,9 +25,9 @@ const ArrowDown = ArrowUp.extend`
   transform : rotate(180deg);
 `
 
-class ScrollTop extends Component {
+class NavButtons extends Component {
 
-  scrollTop = (e) => {
+  NavButtons = (e) => {
     e.preventDefault();
     window.scrollTo({
       'behavior': 'smooth',
@@ -66,10 +66,10 @@ class ScrollTop extends Component {
   }
 }
 
-ScrollTop.propTypes  = {
+NavButtons.propTypes  = {
   navItems : PropTypes.array.isRequired,
   index : PropTypes.number.isRequired,
 }
 
 
-export default ScrollTop
+export default NavButtons

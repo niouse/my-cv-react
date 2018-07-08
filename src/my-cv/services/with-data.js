@@ -42,7 +42,7 @@ const withData = () => (Wrapped) => {
     }
 
     componentDidMount() {
-      //this.populate(this.state.lng)
+      this.populate(this.state.lng)
     }
 
     populate = (lng) => {

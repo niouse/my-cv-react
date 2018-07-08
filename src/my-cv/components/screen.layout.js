@@ -2,11 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import LineTitle from './line-title.component';
-import ScrollTop from './scroll-top/scroll-top.component';
+import NavButtons from './scroll-top/nav-buttons.component';
 import styled from 'styled-components';
 import { getBgColor } from '../api/theme-utils';
 
-import navItems from './../data/nav-items-en.json'
 
 const Container = styled.section.attrs({
   id: props => props.id
@@ -16,6 +15,8 @@ const Container = styled.section.attrs({
   justify-content : center;
   align-items : center;
   background-color : ${getBgColor};
+  background-image: ${props => props.bg ? `url(${props.bg})` : "none"};
+  background-size: cover;
   width : ${({ theme }) => (theme['screen-width'] + 'px')};
   height : ${({ theme }) => (theme['screen-height'] + 'px')};
   overflow : hidden;
@@ -29,24 +30,37 @@ Container.defaultProps = {
 }
 
 
-const Screen = ({ index, id, title, noNav, children, primary = false, secondary = false, tertiary = false }) => {
+const Screen = ({
+  index,
+  navItems,
+  title,
+  noNav,
+  bg,
+  children,
+  primary = false,
+  secondary = false,
+  tertiary = false }) => {
   return <Container
+    bg={bg || false}
     primary={primary}
     secondary={secondary}
     tertiary={tertiary}
-    id={id}>
+    id={navItems[index].link}>
     {title && <LineTitle title={title} />}
     {children}
-    {!noNav && <ScrollTop id={id} index={index} navItems={navItems} />}
+    {!noNav && <NavButtons index={index} navItems={navItems} />}
   </Container>
 }
 
 Screen.propTypes = {
-  index : PropTypes.number.isRequired,
-  id : PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  navItems: PropTypes.arrayOf(PropTypes.shape({
+    link: PropTypes.string.isRequired,
+  })).isRequired,
   title: PropTypes.string,
   noNav: PropTypes.bool,
   children: PropTypes.any,
+  bg : PropTypes.string,
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool

@@ -14,8 +14,6 @@ import { isPc } from "../api/theme-utils";
 
 
 const BgBox = Container.extend`
-  background: ${props => `url(${props.bg})`};
-  background-size: cover;
   width: 100%;
   max-width: 100%;
 `;
@@ -39,9 +37,9 @@ const RespBox = styled(Box)`
   justify-content :  ${isPc("flex-start", "center")};
 `
 
-const Banner = ({ infos, image, bg }) => {
+const Banner = ({ infos, image }) => {
   return (
-    <BgBox bg={bg}>
+    <BgBox>
       <CenterBox>
         <Image image={image} />
         <RespBox pl="30px">
@@ -62,6 +60,5 @@ Banner.propTypes = {
     presentation: PropTypes.string.isRequired
   }),
   image: PropTypes.string.isRequired,
-  bg: PropTypes.string.isRequired
 };
 export default Banner;

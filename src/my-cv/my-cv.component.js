@@ -57,23 +57,24 @@ class App extends Component {
     const { setLanguage, navItems, texts, theme, infos, experiences, skills, formations } = this.props
     return (
       <Fragment>
-        <Screen id={'about'} index={0}>
-          <Navigation
-            setLanguage={setLanguage}
-            navItems={navItems}
-            bgColor={theme.nav}
-            textColor={theme.text3} />
-
+        <Navigation
+          setLanguage={setLanguage}
+          navItems={navItems}
+          bgColor={theme.nav}
+          textColor={theme.text3} />
+        <Screen
+          navItems={navItems}
+          index={0}
+          bg={bannerImg}>
           <Banner
             infos={infos}
             texts={texts.banner}
             image={nodejsImg}
-            bg={bannerImg}
           />
         </Screen>
         <Screen
           secondary
-          id='experiences'
+          navItems={navItems}
           index={1}
           title={'EXPERIENCES'}>
           <Experiences
@@ -86,7 +87,7 @@ class App extends Component {
           />
         </Screen>
         <Screen
-          id='skills'
+          navItems={navItems}
           index={2}
           title="SKILLS">
           <Skills
@@ -95,7 +96,7 @@ class App extends Component {
           />
         </Screen>
         <Screen
-          id='formations'
+          navItems={navItems}
           index={3}
           secondary
           title="FORMATIONS">
@@ -105,11 +106,11 @@ class App extends Component {
           />
         </Screen>
         <Screen
-          id='contact'
+          navItems={navItems}
           index={4}
-          title={"CONTACT"}>
+          title={"CONTACT"}
+          bg={contact}>
           <Contact
-            bg={contact}
             infos={infos}
             texts={texts.contact}
             submitForm={this.submitForm}
@@ -127,8 +128,8 @@ App.propTypes = {
   skills: PropTypes.any,
   texts: PropTypes.object.isRequired,
   navItems: PropTypes.arrayOf(PropTypes.shape({
-    text : PropTypes.string.isRequired,
-    link : PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
   })).isRequired,
   setLanguage: PropTypes.func,
   theme: PropTypes.object.isRequired

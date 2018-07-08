@@ -8,18 +8,12 @@ import linkedin from "./../images/in.png"
 import twitter from "./../images/twt.png"
 import facebook from "./../images/fb.png"
 
-import { Container, P } from './../components/styled-components'
+import { Container, P, CenterAll } from './../components/styled-components'
 import ContactForm from './../components/contact-form.component'
 import { isPc } from '../api/theme-utils';
 
-const BgBox = styled(Container)`
-  background: ${props => `url(${props.bg})`};
-  background-size: cover;
-  width: 100%;
-  max-width: 100%;
-`
 
-const CenterBox = styled(Flex)`
+const CenterBox = styled(CenterAll)`
   flex-direction : ${isPc('row', 'column')};
 `
 
@@ -53,7 +47,7 @@ const Contact = ({
   bg
 }) => {
   return (
-    <BgBox bg={bg}>
+    <Container>
       <CenterBox>
         <RightBox>
           <Box width="80%">
@@ -72,7 +66,7 @@ const Contact = ({
           />
         </LeftBox>
       </CenterBox>
-    </BgBox>
+    </Container>
   )
 }
 
